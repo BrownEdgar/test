@@ -13,6 +13,15 @@ const App = () => {
 
     toUpperCase(string) */
 
+    /* 3.Կա "խառը" տիպերով լցված զանգված, գտնել բոլոր այն բառերը , որոք պարունակում են մեծատառ */
+    const arr = [12 , null, "hello", 25, "UPPERCASE", "MECATAR", true]
+    const findCapitalize = (arr) => {
+        const strings = arr.filter(item => typeof(item) === 'string')
+        return strings.filter(item => item === item.toUpperCase())
+    }
+
+    console.log(findCapitalize(arr))
+
     return(
         <div>
             
