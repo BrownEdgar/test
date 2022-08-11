@@ -1,32 +1,40 @@
 import React from "react";
 
-const App = () => {
+function App() {
 
-/* 2.ՏՐՎԱԾ Է ՆԱԽԱԴԱՍՈՒԹՅՈՒՆ,փորձեք տպել նույն նախադասությունը բայց արդեն առաջին բառը մեծատառ սարգած */    
-
-/*     const string = "hello world";
-
-        function toUpperCase(str) {
-            const capitalize = () => str[0].toUpperCase() + str.slice(1)
-            console.log(capitalize())
-        }
-
-    toUpperCase(string) */
-
-    /* 3.Կա "խառը" տիպերով լցված զանգված, գտնել բոլոր այն բառերը , որոք պարունակում են մեծատառ */
-    const arr = [12 , null, "hello", 25, "UPPERCASE", "MECATAR", true]
-    const findCapitalize = (arr) => {
-        const strings = arr.filter(item => typeof(item) === 'string')
-        return strings.filter(item => item === item.toUpperCase())
-    }
-
-    console.log(findCapitalize(arr))
-
-    return(
-        <div>
-            
-        </div>
-    )
-}
-
-export default App;
+    const [data, setData] = useState([
+      {
+          id: 1,
+          title: "Make A Drink And We'll Tell You Where You'll Meet Your Soulmate",
+          name: "John Doe",
+          month: "March 20, 2020    1 min"
+      },
+      {
+          id: 2,
+          title: "Long=Lasting Fashion Items That Are Worth The Investement",
+          name: "Sarah Doe",
+          month: "March 19, 2020    1 min"
+      },
+      {
+          id: 3,
+          title: "20 Creative Pasta Recipes You'll Probably Want To Whip Up ASAP",
+          name: "Sarah Doe",
+          month: "March 20, 2020    1 min"
+      },
+      {
+          id: 4,
+          title: "I Webt To Seattle With No Clothes The Empty Suitcase Show",
+          name: "John Doe",
+          month: "January 18, 2020    1 min"
+      },                      
+  ])
+  
+    return (
+      <div className="App">
+        {data.map(item => (
+          <Component key={item.id} title={item.title} name={item.name} month={item.month}/>
+        ))}
+      </div>
+    );
+  }
+  
