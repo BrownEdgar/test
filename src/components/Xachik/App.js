@@ -1,5 +1,5 @@
 import React from "react";
-
+import Component, {useState} from "./Component";
 function App() {
 
     const [data, setData] = useState([
