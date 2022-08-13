@@ -2,21 +2,21 @@
 
 // let date = new Date()
 // console.log(date.getDate()-30);
-
+// ?????
 
 
 // 3. Գրեք ֆունկցիա, որը շրջում է փոխանցած բառը,առանց մեթոդ օգտագործելու
 
-// let str = 'asdfg'
+let str = 'asdfg'
 
-// function reverseString(x){
-//     let z = ''
-//     for(let i = x.length-1 ;i>=0;i--){
-//           z+=x[i]
-//     }
-//     return z
-// }
-// console.log(reverseString(str));
+function reverseString(x){
+    let z = ''
+    for(let i = x.length-1 ;i>=0;i--){
+          z+=x[i]
+    }
+    return z
+}
+console.log(reverseString(str));
 
 // 4. կա զանգված, ստուգեք արդյոք այդ զանգվածի առաջին 10 էլեմենտների մեջ կա 3 հատ "1" թվանշանը
 
