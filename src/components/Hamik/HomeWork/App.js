@@ -36,9 +36,9 @@ import './App.css'
             {data.map(elem =>(
                 <Component
                 key ={elem.id}
-                name = {elem.name}
-                date = {elem.date}
-                title = {elem.title}
+                name ={elem.name}
+                date ={elem.date}
+                title ={elem.title}
                 />
             ))}
              
