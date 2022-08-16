@@ -1,29 +1,45 @@
-import React, {useState, useEffect} from 'react'
-import Component  from "./Component";
+import {useForm} from "react-hook-form"
+import "./App.css"
 
-import './App.css'
 
-function App() {
-	const [data, setData] = useState([])
 
-	useEffect(() => {
-	fetch("https://jsonplaceholder.typicode.com/posts")
-			.then((response) => response.json())
-			.then((data) => setData(data))
-	}, [])
-		return (
-			 <div className="flex">
-				<img src="./logo512.png" alt="photo" />
-				{data.map(elem => (
-					<Component 
-						key={elem.id}
-						title={elem.title}
-						description={elem.body}
-						userId = {elem.userId}
-					/>
-				))}
-			 </div>
-	)
+
+function App() {const { register, handleSubmit, reset, formState:{errors} } = useForm({mode:"onBlur"});
+
+const onSubmit = (data) => {
+	 console.log(JSON.stringify(data));
+	 reset();
+};
+	  
+return (
+	<div className="App">
+	<form onSubmit={handleSubmit(onSubmit)}>
+		<div>
+		<label htmlFor="firstName">First Name</label>
+		<input {...register("firstName" , {required: true})} placeholder="Name" />
+		<div>{errors?.firstName && <p>Not Firs Name!</p>}</div>
+		</div>
+	  
+		<div>
+		<label htmlFor="lastName">Last Name</label>
+		<input {...register("lastName", {required: true})} placeholder="lastName" />
+		<div>{errors?.lastName && <p>Not Last Name!</p>}</div>
+		</div>
+	  
+		<div>
+		<label htmlFor="email">Email</label>
+		<input
+			{...register("email" , {required: true})}
+			placeholder="example@gmail.com"
+			type="email"
+		/>
+		<div>{errors?.email && <p>Not Email!</p>}</div>
+		</div>
+		<input type="submit" />
+	</form>
+	</div>
+);
 }
 
+	
 export default App
