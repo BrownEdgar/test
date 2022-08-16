@@ -1,49 +1,45 @@
-import React, { useState } from 'react'
-import MainForm from './MainForm'
-import classNames from 'classnames'
+import React, { useState, useEffect } from 'react'
+import axios from "axios"
 
 import "./App.css"
 
 export default function App() {
-	// const [data, setData] = useState({
-	// 	name: ""
-	// })
+	const [limit, setLimit] = useState(null)
+	const [data, setData] = useState([])
 
-	// const [isDisabled, setisDisabled] = useState(true)
-
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault()
-	// }
-
-	// const handleChange = (e) => { 
-	// 	const { value } = e.target;
-	// 	if (value.trim() !== "" && value.length > 2) {
-	// 		setisDisabled(false)
-	// 	}else{
-	// 		setisDisabled(true)
-	// 	}
-	// }
-
-	const [isAgree, setisAgree] = useState(false)
 
 	const handleChange = (e) => {
-		console.log(e);
-		setisAgree(e.target.checked)
+		const { value } = e.target
+		setLimit(value)
 	}
+
+	useEffect(() => {
+		if (limit) {
+			axios(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}`)
+				.then(response => setData(response.data))
+		}
+	}, [limit])
 
 	return (
 		<div>
-			<h1 className={classNames(null, {
-				green: isAgree
-			})}>welcome</h1>
-			{/* <MainForm 
-				handleSubmit={handleSubmit} 
-				handleChange={handleChange} 
-				isDisabled={isDisabled}
-			/> */}
 			<form>
-				<input type="checkbox" id="agree" onChange={handleChange} />
+				<select name="limit" id="limit" onChange={handleChange}>
+					<option value=""></option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+					<option value="30">30</option>
+					<option value="50">50</option>
+				</select>
 			</form>
+			{!!data.length
+				? <pre>{JSON.stringify(data, null, 1)}</pre>
+				: (
+					<div>
+						<h2>No data</h2>
+					</div>
+				)
+			}
 		</div>
 	)
 }

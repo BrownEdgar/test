@@ -1,21 +1,21 @@
 //1.Գրել ֆունկցիա,որը գտնում է վերադարձնում է բառ/նախադասության մեջ մեր
 // ուզած տառի հանդիպումների քանակը։ Օր․՝ foo("Black hole", "l") => 2
 
-/*function foo(w, i) {
+function foo(w, i) {
    let m = w.split("").filter(elem => i.includes(elem)).length;
 console.log(m)
 }
-foo("Black hole", "l")*/
+foo("Black hole", "l")
 
 
 //2.Ստեղծել Shuffle ֆունկցիան, որը կստանա կամայական զանգված, "կխառնի" այն
 // պատահական ձևով և կվերադարձնի այն։
 
-/*function Shuffle(params) {
-    let arr = params.sort((a,b) => Math.random((a + b)) - 0.45)
-    console.log(arr)
+function Shuffle(params) {
+    let arr = params.sort(() => Math.random() - 0.8)
+
 }
-Shuffle([111, 5, 8, 9, 25, "wlllll",85, 45, 255, 1, 1, 25, 265, "cbl"])*/
+Shuffle([111, 5, 8, 9, 25, "wlllll",85, 45, 255, 1, 1, 25, 265, "cbl"])
 
 
 //3.Ստեղծել generator ֆունկցիան, որը կգեներացնեի մեզ համար պատահական "հայկական" 

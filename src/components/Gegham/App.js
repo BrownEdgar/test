@@ -1,9 +1,6 @@
 import {useForm} from "react-hook-form"
 import "./App.css"
 
-
-
-
 function App() {const { register, handleSubmit, reset, formState:{errors} } = useForm({mode:"onBlur"});
 
 const onSubmit = (data) => {
@@ -17,7 +14,7 @@ return (
 		<div>
 		<label htmlFor="firstName">First Name</label>
 		<input {...register("firstName" , {required: true})} placeholder="Name" />
-		<div>{errors?.firstName && <p>Not Firs Name!</p>}</div>
+		<div>{errors?.firstName && <p>Not First Name!</p>}</div>
 		</div>
 	  
 		<div>
