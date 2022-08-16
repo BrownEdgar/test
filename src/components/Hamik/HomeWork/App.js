@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Component from './Component'
 import './App.css'
 
+
 function App() {
 	const [data, setData] = useState([
 		{
@@ -45,6 +46,7 @@ function App() {
 			</div>
 		</div>
 	)
+
 }
 
 export default App

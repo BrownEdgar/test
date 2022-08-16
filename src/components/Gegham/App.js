@@ -13,6 +13,7 @@ function App() {
 	}, [])
 		return (
 			 <div className="flex">
+				<img src="./logo512.png" alt="photo" />
 				{data.map(elem => (
 					<Component 
 						key={elem.id}
