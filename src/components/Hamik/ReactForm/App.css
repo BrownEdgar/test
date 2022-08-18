@@ -1,0 +1,11 @@
+input{
+    margin-top: -20px;
+    margin-left: 300px;
+}
+select{
+    margin-left: 20px;
+    margin-top: 2px;
+}
+form{
+    display: flex;
+}
