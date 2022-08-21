@@ -1,59 +1,45 @@
 import React from 'react'
-import { useFormik } from 'formik'
-
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as yup from 'yup'
 import "./App.css"
 
+const validationSchema = yup.object({
+	name: yup.string().required("This field is Required"),
+	email: yup.string().email("Plase set a valid Email").required("This field is Required"),
+	lesson: yup.string().oneOf(["JS", "React.js", "Node.js"]),
+	age: yup.number().min(18).max(63,  "max 63").required("This field is Required"),
+})
+
+
 export default function App() {
-	const formik = useFormik({
-		initialValues: {
-			name: "Edgar",
-			email: "",
-			lesson: "",
-		},
-		onSubmit: values => {
-
-		},
-		validate: (values) => {
-			const errors = {}
-			if (values.name.trim() === "") {
-				errors.name = "Required"
-			} else if (!values.name.match(/^[A-Z]/g)) {
-				errors.name = "The first letter must by UpperCase"
-			}
-			if (values.email.trim() === "") {
-				errors.email = "Required"
-			}
-			if (values.lesson.trim() === "") {
-				errors.lesson = "Required"
-			}
-			return errors
-		}
-	})
-
+	const initialValues ={
+		name: "Edgar",
+		email: "",
+		lesson: "",
+		age: 0
+	}
+	const onSubmit = values => {
+		console.log("form data:", values)
+	}
 	return (
-		<div>
-			<form onSubmit={formik.handleSubmit}>
-				<input
-					type="text"
-					name="name"
-					onChange={formik.handleChange}
-					value={formik.values.name} />
-				{formik.errors.name && <p className='errors'>{formik.errors.name}</p>}
-				<input
-					type="email"
-					name="email"
-					onChange={formik.handleChange}
-					value={formik.values.email} />
-				{formik.errors.email && <p className='errors'>{formik.errors.email}</p>}
-				<input
-					type="text"
-					name="lesson"
-					onChange={formik.handleChange}
-					value={formik.values.lesson} />
-				{formik.errors.lesson && <p className='errors'>{formik.errors.lesson}</p>}
-
+		<Formik 
+			onSubmit={onSubmit}
+			initialValues={initialValues}
+			validationSchema={validationSchema}
+			validateOnChange={false}
+			validateOnBlur={true}
+			>
+			<Form>
+				<Field type="text" name='name' id="name" />
+				<ErrorMessage name="name" component="p" />
+				<Field type="email" name='email' id="email" />
+				<ErrorMessage name="email" component="p" />
+				<Field type="text" name='lesson' id="lesson" />
+				<ErrorMessage name="lesson" component="p" />
+				<Field type="number" name='age' id="age" />
+				<ErrorMessage name="age" component="p" />
 				<input type="submit" value="send" />
-			</form>
-		</div>
+			</Form>
+		</Formik>
 	)
 }
