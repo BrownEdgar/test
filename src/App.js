@@ -1,14 +1,14 @@
 import React,{ useState } from "react"
+import Child from "./components/Child";
 
-import '/.App';
+import './App.css';
 
 function App() {
 	const [value, setvalue] = useState(1)
 
 	return (
 		<div className="App">
-			<h1>{value}</h1>
-			<button>task 1</button>
+			<Child arr={[1,2,3,4,"5"]}/>
 		</div>
 	);
 }
