@@ -1,34 +1,16 @@
-*{
-    margin: 0px;
-    padding: 0px;
+*,
+*::before,
+*::after{
+	box-sizing: border-box;
+	margin: 0;
 }
 
-.divBox {
-    width: 300px;
-    margin-left: 20px;
-    padding: 5px 10px 20px 20px;
-    margin-top: 20px;
-    border-radius: 15px;
-    border: 1px solid grey;
-    border-left: 8px solid #A2BFF8;
-    padding: 10px;
-    box-shadow: 3px 3px 10px 0;
+.box {
+	margin: 15px;
+	background-color: pink;
+	border:2px solid black;
+	padding: 15px;
+	text-align: center;
+	width: 200px;
+	display: inline-block;
 }
-p {
-    padding: 5px; 
-    font-weight: bold;
-}
-
-.name {
-    color: #737F8E;
-}
-
-.month {
-    color: #9FA5AC;
-}
-.spanBox {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-  }
