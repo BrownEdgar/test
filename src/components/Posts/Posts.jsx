@@ -1,25 +1,74 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import "./Posts.scss"
+import { useEffect } from 'react'
+import Test from '../Test'
 
-export default function Posts({ data, handleDelete }) {
+export default function Posts({ data, handleDelete, handleChangeTitleById }) {
 	const [searchparams, setSearchparams]	= useSearchParams()
+	const [fields, setFields]	= useState({
+		id: " ",
+		title: " "
+
+
+	})
+	
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		setSearchparams({post: e.target[0].value})
+		const { id }=e.target
+		if (id==="search") {
+			 setSearchparams({post: e.target[0].value})
 	}
+
+	if (id==="create") {
+		
+		const obj={
+			id: e.target[0].value,
+			title: e.target[1].value,
+		}
+ 		setFields(
+ 			prevState=>obj)
+		
+ }
+	}
+
+
+		useEffect(()=>{
+			if(fields.id){
+			handleChangeTitleById(fields)
+			}
+		},[fields])
+
+
+
+
+
+
 	const queryParams = searchparams.get("post") || "";
-	console.log(queryParams)
+	
 	return (
 		<div className='Posts'>
 			<h1>Posts page</h1>
-			<form onSubmit={handleSubmit}>
+			<div className="Posts-Flex">
+
+			
+			<form onSubmit={handleSubmit} id="search">
 				<input type="search" placeholder='search' />
 				<input type="submit" />
 			</form>
+			<form onSubmit={handleSubmit} id="create">
+				<input type="text" placeholder='id' required/>
+				<input type="text" placeholder='new title here' required/>
+				<input type="submit" />
+				<Test />
+			</form>
+			</div>
 			{data
-				.filter(elem => elem.title.includes(queryParams))
+				//.filter(elem => elem.title.includes(queryParams))
+				//.filter(elem => elem.id===fields.id)
+
 				.map(elem => {
 				return (
 					<Link key={elem.id}  to={`/posts/${elem.id}`}>
@@ -41,4 +90,11 @@ export default function Posts({ data, handleDelete }) {
 			})}
 		</div>
 	)
+}
+
+
+Posts.propTypes={
+	data:PropTypes.array,
+	handleDelete:PropTypes.func.isRequired,
+	handleChangeTitleById:PropTypes.func.isRequired
 }
