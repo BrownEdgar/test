@@ -3,23 +3,29 @@ import { Link, useSearchParams } from 'react-router-dom'
 
 import "./Posts.scss"
 
-export default function Posts({ data, handleDelete }) {
-	const [searchparams, setSearchparams]	= useSearchParams()
+export default function Posts({ data, handleDelete}) {
+	const [searchid, setSearchid]	= useSearchParams()
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		setSearchparams({post: e.target[0].value})
+		setSearchid({post: e.target[0].value})
 	}
-	const queryParams = searchparams.get("post") || "";
+
+	
+	
+	const queryParams = searchid.get('post') || "";
 	console.log(queryParams)
 	return (
 		<div className='Posts'>
 			<h1>Posts page</h1>
-			<form onSubmit={handleSubmit}>
+			<form  className='Posts-form' onSubmit={handleSubmit}>
 				<input type="search" placeholder='search' />
+				<input type="text" placeholder='Change'/>
 				<input type="submit" />
 			</form>
+
+			
 			{data
-				.filter(elem => elem.title.includes(queryParams))
+				.filter(elem => elem.id === Number(queryParams))
 				.map(elem => {
 				return (
 					<Link key={elem.id}  to={`/posts/${elem.id}`}>

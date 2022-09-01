@@ -26,6 +26,7 @@ function App() {
 		let f = data.filter(elem => elem.id !== id)
 		setData(f)
 	}
+	
 
 	return (
 		<div className="App">

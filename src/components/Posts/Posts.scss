@@ -6,6 +6,12 @@
 	gap: 40px;
 	padding: 20px;
 
+	&-form {
+		display: flex;
+		justify-content:space-between;
+	}
+	
+
 	.Product {
 		background-color: aqua;
 		padding: 1rem;
@@ -13,6 +19,9 @@
 		flex: 0 0 100%;
 		position: relative;
 		transition: all 0.3s;
+	&-form {
+		margin: 5px 5px;
+	}
 
 		&:hover .Product-DeleteButton {
 			opacity: 1;

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams, useNavigate, Routes,Route, Link } from "react-router-dom";
 
-export default function Post() {
+export default function Pos() {
 	const { id } = useParams()
 	const navigate = useNavigate()
 	return (
