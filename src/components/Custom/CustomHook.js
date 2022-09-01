@@ -1,13 +1,13 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 // export const CustomHook=({
-    
-   
+
+
 //     min= -5,
 //     initial= 6,
 //     max= 12,
 //     step= 1
-    
+
 
 
 // }) => {
@@ -35,22 +35,20 @@ import React, {useState} from 'react'
 
 
 
-export  function CustomHook({
-    initial
-    })
-     {
-       const [value, setValue]=useState(initial)
-   
-   
-    const rep=(repid)=>{
-           let arr1=value.reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc), {})
-           console.log(arr1);
-           //arr1=repid
-           setValue([...value, repid])
-       }
-      
-   
-       return [value, {rep}]
-      
+export function CustomHook({
+	initial
+}) {
+	const [value, setValue] = useState(initial)
 
-   }
+
+	const rep = () => {
+		let arr1 = value.reduce((acc, n) => (acc[n] = (acc[n] || 0) + 1, acc), {})
+		console.log(arr1);
+		setValue([...value, arr1])
+	}
+
+
+	return [value, { rep }]
+
+
+}

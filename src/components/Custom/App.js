@@ -28,11 +28,9 @@ import { CustomHook } from './CustomHook'
 export default function App() {
 
     const [value, {rep}]= CustomHook({
-        initial :[1,2,2,7,9,9,7]
-        
-        
-       
+        initial: [1,2,2,7,9,9,7]
     })
+		console.log('value', value)
     
     return (
         <div className="box">
