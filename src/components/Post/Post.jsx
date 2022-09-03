@@ -1,5 +1,6 @@
 import React from 'react'
-import { useParams, useNavigate, Routes,Route, Link } from "react-router-dom";
+import { useParams, useNavigate, Routes,Route, 
+	Link } from "react-router-dom";
 
 export default function Post() {
 	const { id } = useParams()
