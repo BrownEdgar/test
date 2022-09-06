@@ -1,12 +1,12 @@
 
-import React, { useState, useMemo
+//import React, { useState, useMemo
 	//, useEffect, 
-} from "react";
-import { Routes, Route, } from 'react-router-dom';
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import axios from 'axios'
-import Posts from "./components/Posts/Posts";
+//} from "react";
+//import { Routes, Route, } from 'react-router-dom';
+//import Navbar from "./components/Navbar/Navbar";
+//import Home from "./components/Home/Home";
+//import axios from 'axios'
+//import Posts from "./components/Posts/Posts";
 //import Post from "./components/Post/Post";
 
 
@@ -84,52 +84,73 @@ import Posts from "./components/Posts/Posts";
 
 
 
-function App() {
-	const [data, setData] = useState([])
+// function App() {
+// 	const [data, setData] = useState([])
 	
 
-	const getPosts=()=>{
-		axios("https://jsonplaceholder.typicode.com/posts")
-			 .then(response =>{
-				console.log(response.data);
-				setData(response.data)})
+// 	const getPosts=()=>{
+// 		axios("https://jsonplaceholder.typicode.com/posts")
+// 			 .then(response =>{
+// 				console.log(response.data);
+// 				setData(response.data)})
 		
-		// .then(response =>response.json()) 
-			// .then(json=>console.log(json))
-			}
+		
+// 			}
 				 
-			const mem=useMemo(()=> getPosts(),[data.length])
+// 			const mem=useMemo(()=> getPosts(),[data.length])
 
-	// function refreshPage() {
-	// 			window.location.reload(false);
-	// 		  }
+	
 
-	// 		  const mem1=useMemo(()=> refreshPage(),[])  
-
-	return (
-		<div className="App">
-			{/* <Posts posts={data}/> */}
-			<Navbar />
+// 	return (
+// 		<div className="App">
+			
+// 			<Navbar />
 			 
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/posts">
-					{/* //<pre>{JSON.stringify(data,null,1)}</pre> */}
-					<Route index element={
-					<Posts
-					 data={data} 
+// 			<Routes>
+// 				<Route path="/" element={<Home />} />
+// 				<Route path="/posts">
 					
-					 />} />
+// 					<Route index element={
+// 					<Posts
+// 					 data={data} 
+					
+// 					 />} />
 					 
 						
-				</Route>
-			</Routes>
+// 				</Route>
+// 			</Routes>
 			 
-		</div>
-	);
-}
+// 		</div>
+// 	);
+// }
 
-export default App;
+// export default App;
+
+
+
+import React from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import { CHANGE_NAME, GET_ARR_ELEMENTS } from "./components/redux/store";
+
+export default function App() {
+	const name=useSelector(state=>state.name)
+	const arr=useSelector(state=>state.arr)
+	const dispatch=useDispatch()
+	const filterArr=()=>{
+		const f=arr.filter(elem=>elem.match(/^[A-Z]/g))
+		dispatch({type:GET_ARR_ELEMENTS, payload: {arr:f}})
+	}
+
+
+  return (
+	<div>
+		<h1>{name}</h1>
+		<button onClick={()=>dispatch ({type:CHANGE_NAME, payload: {name:"JavaScript"}})}>change react name</button>
+		<pre>{JSON.stringify(arr, null, 1)}</pre>
+		<button onClick={filterArr}>filter</button>
+	</div>
+  )
+}
 
 
 
