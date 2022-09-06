@@ -3,10 +3,11 @@ import { Routes, Route, } from 'react-router-dom'
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import axios from 'axios'
-
-import './App.scss';
 import Posts from "./components/Posts/Posts";
 import Post from "./components/Post/Post";
+
+import './App.scss';
+
 
 function App() {
 	const [data, setData] = useState([])
