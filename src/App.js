@@ -98,13 +98,13 @@ function App() {
 			// .then(json=>console.log(json))
 			}
 				 
-			const mem=useMemo(()=> getPosts(),[])
+			const mem=useMemo(()=> getPosts(),[data.length])
 
-	function refreshPage() {
-				window.location.reload(false);
-			  }
+	// function refreshPage() {
+	// 			window.location.reload(false);
+	// 		  }
 
-			  const mem1=useMemo(()=> refreshPage(),[])  
+	// 		  const mem1=useMemo(()=> refreshPage(),[])  
 
 	return (
 		<div className="App">
