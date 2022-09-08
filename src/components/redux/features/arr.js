@@ -9,7 +9,6 @@ export function arrReducer(state = [], action) {
 	}
 }
 
-
 export const initialArrValue = ['html', 'css', 'Java Script', 'React.js', 'Node.js', 'Python']
 
 export function changeArrAction(f) {

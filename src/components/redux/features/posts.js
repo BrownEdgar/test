@@ -1,3 +1,15 @@
+import { getASYNCPosts } from "./postAPI";
+
+export function asyncloadSerials() {
+	return function (dispatch, getState) {
+		return getASYNCPosts().then(response => {
+			dispatch(addPostAction(response))
+		})
+	}
+
+}
+
+
 export function postsReducer(state = [], action) {
 	console.log(action);
 	switch (action.type) {
@@ -16,15 +28,10 @@ export const initialPostValue = [
 	}
 ]
 
-export function addPostAction() {
-	console.log(111);
+export function addPostAction(post) {
 	return {
 		type: "ADD-POST",
-		payload: {
-			id: 2,
-			title: "lorem ipsum2",
-			description: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore, quis nostrum temporibus suscipit consequatur quidem repellat perferendis ipsam aut minus fugit aperiam repellendus mollitia, repudiandae tenetur laborum cum quisquam ad!"
-		}
+		payload: post
 	}
 }
 

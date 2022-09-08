@@ -7,6 +7,7 @@ export function nameReducer(state = "", action) {
 		default: return state
 	}
 }
+
 export const initialNameValue = "Redux"
 
 
