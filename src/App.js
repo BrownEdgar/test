@@ -159,7 +159,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeNameAction } from './components/redux/features/name'
 import {changeArrAction} from './components/redux/features/arr'
-import { addPostAction, selectPosts } from './components/redux/features/posts'
+import { addPostAction, asyncloadSerials, selectPosts } from './components/redux/features/posts'
 
 
 export default function App() {
@@ -184,7 +184,7 @@ export default function App() {
 					{JSON.stringify(elem, null, 1)}
 				</pre>
 			})}
-			<button onClick={() => dispatch(addPostAction())}>add post</button>
+			<button onClick={() => dispatch(asyncloadSerials())}>add post</button>
 
 
 		</div>
