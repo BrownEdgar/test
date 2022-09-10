@@ -1,39 +1,20 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { changeNameAction } from './components/redux/features/name'
-import {changeArrAction} from './components/redux/features/arr'
-import { addPostAction, asyncloadSerials, selectPosts } from './components/redux/features/posts'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { chengeName } from './components/redux/features/testSlice'
+
+
 
 
 export default function App() {
+
+	const state = useSelector(state => state)
+	const dispatch = useDispatch()
 	
 
-	const posts = useSelector(selectPosts)
-
-	// const arr = useSelector(state => state.arr)
-	 const dispatch = useDispatch()
-	// const filterArr = () => {
-	// 		const f = arr.filter(elem => elem.match(/^[A-Z]/g))
-	// 	dispatch(changeArrAction(f))
-	// }
 	return (
 		<div>
-			{/* <h1>{name}</h1>
-			<button onClick={() => dispatch(changeNameAction())}>change redux name</button>
-			<pre>{JSON.stringify(arr, null, 1)}</pre>
-			<button onClick={filterArr}>filter</button> */}
-			{posts.map(elem => {
-				return <pre key={Math.random()}>
-					{JSON.stringify(elem, null, 1)}
-				</pre>
-			})}
-			<button onClick={() => dispatch(asyncloadSerials())}>add post</button>
-
-
+					<p>{JSON.stringify(state,null,1)}</p>
+			<button onClick={() => dispatch(chengeName())}>change Name</button>
 		</div>
 	)
 }
-
-
-
-
