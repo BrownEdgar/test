@@ -155,20 +155,30 @@
 
 
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeNameAction } from './components/redux/features/name'
-import {changeArrAction} from './components/redux/features/arr'
-import { addPostAction, asyncloadSerials, selectPosts } from './components/redux/features/posts'
+//import { changeNameAction } from './components/redux/features/name'
+//import {changeArrAction} from './components/redux/features/arr'
+//import { addPostAction, asyncloadSerials, selectPosts } from './components/redux/features/posts'
+import {addBookAction, selectBooks} from './components/redux/features/OldBooksSlice'
+import {addAsyncBook, addBook } from './components/redux/features/booksSlice'
 
 
 export default function App() {
 	
+const books = useSelector(state=>state.books)
+const dispatch=useDispatch()
+console.log(books);
 
-	const posts = useSelector(selectPosts)
+
+
+useEffect(()=>{
+	dispatch(addAsyncBook("https://jsonplaceholder.typicode.com/todos/1"))
+}, [])
+	       //const posts = useSelector(selectPosts)
 
 	// const arr = useSelector(state => state.arr)
-	 const dispatch = useDispatch()
+	         //const dispatch = useDispatch()
 	// const filterArr = () => {
 	// 		const f = arr.filter(elem => elem.match(/^[A-Z]/g))
 	// 	dispatch(changeArrAction(f))
@@ -179,17 +189,34 @@ export default function App() {
 			<button onClick={() => dispatch(changeNameAction())}>change redux name</button>
 			<pre>{JSON.stringify(arr, null, 1)}</pre>
 			<button onClick={filterArr}>filter</button> */}
-			{posts.map(elem => {
+			
+			
+			
+			{/* {posts.map(elem => {
 				return <pre key={elem.id}>
 					{JSON.stringify(elem, null, 1)}
 				</pre>
 			})}
-			<button onClick={() => dispatch(asyncloadSerials())}>add post</button>
+			<button onClick={() => dispatch(asyncloadSerials())}>add post</button> */}
 
 
-		</div>
-	)
-}
+					{books.map((elem, index) => {
+					return (
+						<div key={elem.id}>
+							<p>{JSON.stringify(elem, null, 1)}</p>
+						</div>
+					)
+					
+					})
+					}
+					<button onClick={() => dispatch(addBook({
+						id:1,
+						title:"King"
+					}))}>add book</button>
+
+					</div>
+					)
+					}
 
 
 

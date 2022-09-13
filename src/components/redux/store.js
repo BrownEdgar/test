@@ -32,20 +32,22 @@
 
 // export default store
 
-import { combineReducers, applyMiddleware } from 'redux'
+//import { combineReducers, applyMiddleware } from 'redux'
 import{configureStore} from '@reduxjs/toolkit'
-import { nameReducer, initialNameValue } from './features/name'
-import { arrReducer, initialArrValue } from './features/arr'
-import { postsReducer, initialPostValue, addPostAction } from './features/posts'
+import rootReducer from "./rootReducer"
+//import booksSlice from './features/booksSlice'
+//import { nameReducer, initialNameValue } from './features/name'
+//import { arrReducer, initialArrValue } from './features/arr'
+//import { postsReducer, initialPostValue, addPostAction } from './features/posts'
 
-import thunk from "redux-thunk"
+//import thunk from "redux-thunk"
 
 
-const initialState = {
-	name: initialNameValue,
-	arr: initialArrValue,
-	posts: initialPostValue,
-}
+// const initialState = {
+// 	name: initialNameValue,
+// 	arr: initialArrValue,
+// 	posts: initialPostValue,
+// }
 
 // const myFirstMiddleWare = (store) => (next) => (action) => {
 // 	if (action.type === CHANGE_NAME) {
@@ -61,11 +63,20 @@ const initialState = {
 // }
 
 
-const store = configureStore({reducer:{
-	name: nameReducer,
-	arr: arrReducer,
-	posts: postsReducer
-}}, initialState, applyMiddleware(thunk))
+// const store = configureStore({reducer:{
+// 	name: nameReducer,
+// 	arr: arrReducer,
+// 	posts: postsReducer
+// }}, initialState, applyMiddleware(thunk))
 
-export default store
+// e
+
+const store=configureStore({
+	reducer:rootReducer
+})
+
+export default store 
+
+
+
 
