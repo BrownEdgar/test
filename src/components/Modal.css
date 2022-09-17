@@ -1,0 +1,36 @@
+.modalContainer{
+    height: 200px;
+    width: 400px;
+    position:fixed;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    
+ }
+
+h1{
+    text-align: center;
+}
+.but1{
+background-color: rgb(80, 170, 170);
+}
+
+.but2{
+    background-color: brown;
+}
+
+.footer{
+    height: 200px;
+    width: 200px;
+    position:fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.modalBackground{
+    width: 400px;
+    height: 500px;
+    border: 1px solid grey;
+}

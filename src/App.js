@@ -1,12 +1,12 @@
 
-import React, { useState, useMemo
+// import React, { useState, useMemo
 	//, useEffect, 
-} from "react";
-import { Routes, Route, } from 'react-router-dom';
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./components/Home/Home";
-import axios from 'axios'
-import Posts from "./components/Posts/Posts";
+// } from "react";
+// import { Routes, Route, } from 'react-router-dom';
+// import Navbar from "./components/Navbar/Navbar";
+// import Home from "./components/Home/Home";
+// import axios from 'axios'
+// import Posts from "./components/Posts/Posts";
 //import Post from "./components/Post/Post";
 
 
@@ -84,54 +84,133 @@ import Posts from "./components/Posts/Posts";
 
 
 
-function App() {
-	const [data, setData] = useState([])
+// function App() {
+// 	const [data, setData] = useState([])
 	
 
-	const getPosts=()=>{
-		axios("https://jsonplaceholder.typicode.com/posts")
-			 .then(response =>{
-				console.log(response.data);
-				setData(response.data)})
+// 	const getPosts=()=>{
+// 		axios("https://jsonplaceholder.typicode.com/posts")
+// 			 .then(response =>{
+// 				console.log(response.data);
+// 				setData(response.data)})
 		
-		// .then(response =>response.json()) 
-			// .then(json=>console.log(json))
-			}
+// 		// .then(response =>response.json()) 
+// 			// .then(json=>console.log(json))
+// 			}
 				 
-			const mem=useMemo(()=> getPosts(),[])
+// 			const mem=useMemo(()=> getPosts(),[])
 
-	function refreshPage() {
-				window.location.reload(false);
-			  }
+// 	function refreshPage() {
+// 				window.location.reload(false);
+// 			  }
 
-			  const mem1=useMemo(()=> refreshPage(),[])  
+// 			  const mem1=useMemo(()=> refreshPage(),[])  
 
-	return (
-		<div className="App">
-			{/* <Posts posts={data}/> */}
-			<Navbar />
+// 	return (
+// 		<div className="App">
+// 			{/* <Posts posts={data}/> */}
+// 			<Navbar />
 			 
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/posts">
-					{/* //<pre>{JSON.stringify(data,null,1)}</pre> */}
-					<Route index element={
-					<Posts
-					 data={data} 
+// 			<Routes>
+// 				<Route path="/" element={<Home />} />
+// 				<Route path="/posts">
+// 					{/* //<pre>{JSON.stringify(data,null,1)}</pre> */}
+// 					<Route index element={
+// 					<Posts
+// 					 data={data} 
 					
-					 />} />
+// 					 />} />
 					 
 						
-				</Route>
-			</Routes>
+// 				</Route>
+// 			</Routes>
 			 
+// 		</div>
+// 	);
+// }
+
+// export default App;
+
+
+
+import React, { useState } from 'react'
+import Modal  from './components/Modal'
+
+import './App.css'
+
+
+ function App() {
+	const [openModal, setOpenModal]=useState(false)
+	const[data, setData]=useState([
+		{
+			id: 1,
+			description: "CSS"
+		},
+	
+	  {
+			id: 2,
+			description: "JavaScript"
+		},
+	
+	  {
+			id: 3,
+			description: "Node.js"
+		},
+	])
+
+
+
+
+// const handleClick = (e, id) =>{
+// 		e.preventDefault()
+// 		const my=data.filter( elem => elem.id !== id)
+// 		 setData(my)
+		
+// 	}
+  return (
+	 <div className="flex">
+
+{data.map(elem=>{
+        return <div className='flex-item' key={elem.id}>
+		<p>{elem.description}</p>
+		<button className='OpenModalBtn' onClick={()=> {
+			setOpenModal(true);
+		}}
+		>
+		Delete</button>
 		</div>
-	);
-}
+		
+		})}
+	  {openModal && <Modal /> } 
+</div>
+ )
+} 
+
+
 
 export default App;
 
 
+// const handleClick = (e, id) =>{
+// 	e.preventDefault()
+// 	const my=data.filter( elem => elem.id !== id)
+// 	 setData(my)
+	
+// }
+// return (
+//  <div className="flex">
+
+// {data.map(elem=>{
+// 	return <div className='flex-item' key={elem.id}>
+// 	<p>{elem.description}</p>
+// 	<button onClick={(e)=>handleClick(e, elem.id)}>Delete</button>
+// 	</div>
+// 	})}
+  
+// </div>
+// )
+// } 
 
 
 
+// export default App;
