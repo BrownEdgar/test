@@ -1,20 +1,42 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { chengeName } from './components/redux/features/testSlice'
+import React, { Component } from 'react'
 
+export default class App extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			count: 1,
+			name: "React"
+		}
+	}
 
+	shouldComponentUpdate(nextProps, nextState) { 
+		return true;
+	}
 
+	handleClick = () =>  { 
+		this.setState({ count: 2})
+	}
 
-export default function App() {
-
-	const state = useSelector(state => state)
-	const dispatch = useDispatch()
-	
-
-	return (
-		<div>
-					<p>{JSON.stringify(state,null,1)}</p>
-			<button onClick={() => dispatch(chengeName())}>change Name</button>
-		</div>
-	)
+	render() {
+		const { count, name} = this.state
+		return (
+			<div>
+				<h2>Count:{count}</h2>
+				<h2>Name:{name}</h2>
+				<button onClick={this.handleClick}>Change Count</button>
+			</div>
+		)
+	}
 }
+
+///////////////////////////////////
+// import React from 'react'
+
+// export default function App() {
+// 	const [count, setCount] = useState(1)
+
+// 	return (
+// 		<div>{count}</div>
+// 	)
+// }
+
