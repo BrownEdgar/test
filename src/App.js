@@ -1,4 +1,5 @@
 
+
 // import React, { useState, useMemo
 	//, useEffect, 
 // } from "react";
@@ -13,30 +14,20 @@
 //import './App.scss';
 // export const MyContext=React.createContext()
 
+// import React, { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { chengeName } from './components/redux/features/testSlice'
 
 
-// function App() {
-// 	const [data, setData] = useState([])
-// 	const [value, setValue]=useState(101)
-
-// 	useEffect(() => {
-// 		axios("https://jsonplaceholder.typicode.com/posts?_limit=5")
-// 			.then(response => setData(response.data))
-
-// 		return () => {
-// 			console.log("the end");
-// 		}
-// 	}, [])
 
 
-// 	const handleDelete = (e, id) => {
-// 		e.preventDefault()
-// 		let f = data.filter(elem => elem.id !== id)
-// 		setData(f)
-// 	}
 
-// const handleChangeTitleById=({id, title})=>{
+// export default function App() {
+
+// 	const state = useSelector(state => state)
+// 	const dispatch = useDispatch()
 	
+
 // 	const newData=data.map(elem=>{
 // 		if(elem.id===+id){
 // 			elem.title=title
@@ -133,30 +124,30 @@
 
 
 
-import React, { useState } from 'react'
-import Modal  from './components/Modal'
+// import React, { useState } from 'react'
+// import Modal  from './components/Modal'
 
-import './App.css'
+// import './App.css'
 
 
- function App() {
-	const [openModal, setOpenModal]=useState(false)
-	const[data, setData]=useState([
-		{
-			id: 1,
-			description: "CSS"
-		},
+//  function App() {
+// 	const [openModal, setOpenModal]=useState(false)
+// 	const[data, setData]=useState([
+// 		{
+// 			id: 1,
+// 			description: "CSS"
+// 		},
 	
-	  {
-			id: 2,
-			description: "JavaScript"
-		},
+// 	  {
+// 			id: 2,
+// 			description: "JavaScript"
+// 		},
 	
-	  {
-			id: 3,
-			description: "Node.js"
-		},
-	])
+// 	  {
+// 			id: 3,
+// 			description: "Node.js"
+// 		},
+// 	])
 
 
 
@@ -167,28 +158,28 @@ import './App.css'
 // 		 setData(my)
 		
 // 	}
-  return (
-	 <div className="flex">
+//   return (
+// 	 <div className="flex">
 
-{data.map(elem=>{
-        return <div className='flex-item' key={elem.id}>
-		<p>{elem.description}</p>
-		<button className='OpenModalBtn' onClick={()=> {
-			setOpenModal(true);
-		}}
-		>
-		Delete</button>
-		</div>
+// {data.map(elem=>{
+//         return <div className='flex-item' key={elem.id}>
+// 		<p>{elem.description}</p>
+// 		<button className='OpenModalBtn' onClick={()=> {
+// 			setOpenModal(true);
+// 		}}
+// 		>
+// 		Delete</button>
+// 		</div>
 		
-		})}
-	  {openModal && <Modal /> } 
-</div>
- )
-} 
+// 		})}
+// 	  {openModal && <Modal /> } 
+// </div>
+//  )
+// } 
 
 
 
-export default App;
+// export default App;
 
 
 // const handleClick = (e, id) =>{
@@ -214,3 +205,126 @@ export default App;
 
 
 // export default App;
+
+
+// 	return (
+// 		<div>
+// 					<p>{JSON.stringify(state,null,1)}</p>
+// 			<button onClick={() => dispatch(chengeName())}>change Name</button>
+// 		</div>
+// 	)
+// }
+
+import React, {useState} from 'react'
+import {Formik, Form, Field, ErrorMessage} from 'formik'
+import * as yup from 'yup'
+
+export default function App() {
+	const [state, setState]=useState({});
+	const API_KEY=process.env.REACT_APP_API_KEY
+
+
+	const initialValues={
+		email: "marjana.sarg@mail.ru",
+		password: "",
+	}
+
+const loginHandler=(userData)=>{
+	const data={
+		...userData,
+		returnSecureToken: true,
+	}
+	fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, 
+	{
+		method: "POST",
+		body:JSON.stringify(data)
+	})
+	.then(response=>console.log(response))
+	.catch(err=>console.log(err))
+	}
+
+const registerHandler=(userData)=>{
+const data={
+	...userData,
+	returnSecureToken:true,
+}
+fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+	method: "POST",
+	body:JSON.stringify(data)
+})
+.then(response=>console.log(response))
+.catch(err=>console.log(err))
+}
+const validationSchema=yup.object({
+	email:yup.string().email("Must be Email").required("Required"),
+	password :yup.string().matches(/^[A-Z]/g).required("Required")
+})
+const onSubmit=(values)=>{
+registerHandler(values)
+}
+
+
+	return (
+	<div className='container'>
+		<Formik
+		initialValues={initialValues}
+		validationSchema={validationSchema}
+		onSubmit={onSubmit}
+		>
+			{formik =>{
+				return(
+					<Form>
+						<div className="form-group">
+							<label htmlFor="email">Email</label>
+							<Field type="email" name='email' id="email" />
+							<ErrorMessage>
+								{(errMsg)=>(
+									<div>
+										<p className='error'>{errMsg}</p>
+									</div>
+								)}
+							</ErrorMessage>
+							</div>
+
+
+							<div className="form-group">
+							<label htmlFor="password">Password</label>
+							<Field type="password" name='password' id="password" />
+							<ErrorMessage>
+								{(errMsg)=>(
+									<div>
+										<p className='error'>{errMsg}</p>
+									</div>
+								)}
+							</ErrorMessage>
+							</div>
+									
+									<button
+									type='button'
+									id="login"
+									onClick={()=>{
+										
+										loginHandler(formik.values)
+									}}
+									disabled={!formik.isValid}
+									>
+										login
+									</button>
+
+
+									<button
+									type='submit'
+									id="Register"
+									disabled={!formik.isValid}
+									>
+										Register
+									</button>
+					</Form>
+				)
+			}
+
+			}
+			</Formik>
+	</div>
+  )
+}
