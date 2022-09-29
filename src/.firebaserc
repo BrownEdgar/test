@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "del-box": "deleted-boxes",
+    "default": "deleted-boxes"
+  },
+  "targets": {},
+  "etags": {}
+}

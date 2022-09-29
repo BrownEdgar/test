@@ -124,30 +124,30 @@
 
 
 
-// import React, { useState } from 'react'
+ import React, { useState } from 'react'
 // import Modal  from './components/Modal'
 
-// import './App.css'
+import './App.css'
 
 
-//  function App() {
+ function App() {
 // 	const [openModal, setOpenModal]=useState(false)
-// 	const[data, setData]=useState([
-// 		{
-// 			id: 1,
-// 			description: "CSS"
-// 		},
+	const[data, setData]=useState([
+		{
+			id: 1,
+			description: "CSS"
+		},
 	
-// 	  {
-// 			id: 2,
-// 			description: "JavaScript"
-// 		},
+	  {
+			id: 2,
+			description: "JavaScript"
+		},
 	
-// 	  {
-// 			id: 3,
-// 			description: "Node.js"
-// 		},
-// 	])
+	  {
+			id: 3,
+			description: "Node.js"
+		},
+	])
 
 
 
@@ -182,29 +182,29 @@
 // export default App;
 
 
-// const handleClick = (e, id) =>{
-// 	e.preventDefault()
-// 	const my=data.filter( elem => elem.id !== id)
-// 	 setData(my)
+const handleClick = (e, id) =>{
+	e.preventDefault()
+	const my=data.filter( elem => elem.id !== id)
+	 setData(my)
 	
-// }
-// return (
-//  <div className="flex">
+}
+return (
+ <div className="flex">
 
-// {data.map(elem=>{
-// 	return <div className='flex-item' key={elem.id}>
-// 	<p>{elem.description}</p>
-// 	<button onClick={(e)=>handleClick(e, elem.id)}>Delete</button>
-// 	</div>
-// 	})}
+{data.map(elem=>{
+	return <div className='flex-item' key={elem.id}>
+	<p>{elem.description}</p>
+	<button onClick={(e)=>handleClick(e, elem.id)}>Delete</button>
+	</div>
+	})}
   
-// </div>
-// )
-// } 
+</div>
+)
+} 
 
 
 
-// export default App;
+export default App;
 
 
 // 	return (
@@ -215,116 +215,116 @@
 // 	)
 // }
 
-import React, {useState} from 'react'
-import {Formik, Form, Field, ErrorMessage} from 'formik'
-import * as yup from 'yup'
+// import React, {useState} from 'react'
+// import {Formik, Form, Field, ErrorMessage} from 'formik'
+// import * as yup from 'yup'
 
-export default function App() {
-	const [state, setState]=useState({});
-	const API_KEY=process.env.REACT_APP_API_KEY
-
-
-	const initialValues={
-		email: "marjana.sarg@mail.ru",
-		password: "",
-	}
-
-const loginHandler=(userData)=>{
-	const data={
-		...userData,
-		returnSecureToken: true,
-	}
-	fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, 
-	{
-		method: "POST",
-		body:JSON.stringify(data)
-	})
-	.then(response=>console.log(response))
-	.catch(err=>console.log(err))
-	}
-
-const registerHandler=(userData)=>{
-const data={
-	...userData,
-	returnSecureToken:true,
-}
-fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
-	method: "POST",
-	body:JSON.stringify(data)
-})
-.then(response=>console.log(response))
-.catch(err=>console.log(err))
-}
-const validationSchema=yup.object({
-	email:yup.string().email("Must be Email").required("Required"),
-	password :yup.string().matches(/^[A-Z]/g).required("Required")
-})
-const onSubmit=(values)=>{
-registerHandler(values)
-}
+// export default function App() {
+// 	const [state, setState]=useState({});
+// 	const API_KEY=process.env.REACT_APP_API_KEY
 
 
-	return (
-	<div className='container'>
-		<Formik
-		initialValues={initialValues}
-		validationSchema={validationSchema}
-		onSubmit={onSubmit}
-		>
-			{formik =>{
-				return(
-					<Form>
-						<div className="form-group">
-							<label htmlFor="email">Email</label>
-							<Field type="email" name='email' id="email" />
-							<ErrorMessage>
-								{(errMsg)=>(
-									<div>
-										<p className='error'>{errMsg}</p>
-									</div>
-								)}
-							</ErrorMessage>
-							</div>
+// 	const initialValues={
+// 		email: "marjana.sarg@mail.ru",
+// 		password: "",
+// 	}
+
+// const loginHandler=(userData)=>{
+// 	const data={
+// 		...userData,
+// 		returnSecureToken: true,
+// 	}
+// 	fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, 
+// 	{
+// 		method: "POST",
+// 		body:JSON.stringify(data)
+// 	})
+// 	.then(response=>console.log(response))
+// 	.catch(err=>console.log(err))
+// 	}
+
+// const registerHandler=(userData)=>{
+// const data={
+// 	...userData,
+// 	returnSecureToken:true,
+// }
+// fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+// 	method: "POST",
+// 	body:JSON.stringify(data)
+// })
+// .then(response=>console.log(response))
+// .catch(err=>console.log(err))
+// }
+// const validationSchema=yup.object({
+// 	email:yup.string().email("Must be Email").required("Required"),
+// 	password :yup.string().matches(/^[A-Z]/g).required("Required")
+// })
+// const onSubmit=(values)=>{
+// registerHandler(values)
+// }
 
 
-							<div className="form-group">
-							<label htmlFor="password">Password</label>
-							<Field type="password" name='password' id="password" />
-							<ErrorMessage>
-								{(errMsg)=>(
-									<div>
-										<p className='error'>{errMsg}</p>
-									</div>
-								)}
-							</ErrorMessage>
-							</div>
+// 	return (
+// 	<div className='container'>
+// 		<Formik
+// 		initialValues={initialValues}
+// 		validationSchema={validationSchema}
+// 		onSubmit={onSubmit}
+// 		>
+// 			{formik =>{
+// 				return(
+// 					<Form>
+// 						<div className="form-group">
+// 							<label htmlFor="email">Email</label>
+// 							<Field type="email" name='email' id="email" />
+// 							<ErrorMessage>
+// 								{(errMsg)=>(
+// 									<div>
+// 										<p className='error'>{errMsg}</p>
+// 									</div>
+// 								)}
+// 							</ErrorMessage>
+// 							</div>
+
+
+// 							<div className="form-group">
+// 							<label htmlFor="password">Password</label>
+// 							<Field type="password" name='password' id="password" />
+// 							<ErrorMessage>
+// 								{(errMsg)=>(
+// 									<div>
+// 										<p className='error'>{errMsg}</p>
+// 									</div>
+// 								)}
+// 							</ErrorMessage>
+// 							</div>
 									
-									<button
-									type='button'
-									id="login"
-									onClick={()=>{
+// 									<button
+// 									type='button'
+// 									id="login"
+// 									onClick={()=>{
 										
-										loginHandler(formik.values)
-									}}
-									disabled={!formik.isValid}
-									>
-										login
-									</button>
+// 										loginHandler(formik.values)
+// 									}}
+// 									disabled={!formik.isValid}
+// 									>
+// 										login
+// 									</button>
 
 
-									<button
-									type='submit'
-									id="Register"
-									disabled={!formik.isValid}
-									>
-										Register
-									</button>
-					</Form>
-				)
-			}
+// 									<button
+// 									type='submit'
+// 									id="Register"
+// 									disabled={!formik.isValid}
+// 									>
+// 										Register
+// 									</button>
+// 					</Form>
+// 				)
+// 			}
 
-			}
-			</Formik>
-	</div>
-  )
-}
+// 			}
+// 			</Formik>
+// 	</div>
+//   )
+// }
